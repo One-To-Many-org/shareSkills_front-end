@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MediaButInfType, UsernameField } from '@web-times-team/angular-web-times-tools';
+
 
 @Component({
   selector: 'app-login-page',
@@ -6,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
-  mediasButInfTypes: MediasButInfType[] = [MediasButInfType.facebook, MediasButInfType.google, MediasButInfType.linkedIn];
+  mediasButInfTypes: MediaButInfType[] = [MediaButInfType.facebook, MediaButInfType.google, MediaButInfType.linkedIn];
   usernameField = UsernameField[0]
   constructor() { }
 
