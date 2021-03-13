@@ -1,1 +1,183 @@
 /* You can add global styles to this file, and also import other style files */
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 105%;
+}
+html {
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fcfcfc;
+  font-family: "Source Sans Pro", Helvetica, Roboto, Arial, sans-serif;
+  font-weight: normal;
+  line-height: 1.4;
+  color: #0a0a0a;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+p,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  font-style: normal;
+  text-rendering: optimizeLegibility;
+}
+
+h5,
+.h5 {
+  font-size: 0.85rem !important;
+  line-height: 1.25;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  color: inherit;
+  font-family: "Source Sans Pro", Helvetica, Roboto, Arial, sans-serif;
+  font-weight: bold !important;
+}
+
+p {
+  margin-bottom: 1rem;
+  font-size: 14px;
+  line-height: 1.4;
+  text-rendering: optimizeLegibility;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  line-height: inherit;
+  color: #010d18;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a {
+  background-color: transparent;
+}
+
+img {
+  display: inline-block;
+  vertical-align: middle;
+  max-width: 100%;
+  height: auto;
+  -ms-interpolation-mode: bicubic;
+}
+img {
+  border-style: none;
+}
+
+a img {
+  border: 0;
+}
+
+ul {
+  margin-left: 1.25rem;
+  list-style-type: disc;
+}
+ul,
+ol,
+dl {
+  margin-bottom: 1rem;
+  list-style-position: outside;
+  line-height: 1.4;
+}
+
+li {
+  font-size: inherit;
+}
+
+.container {
+  padding-right: 1rem;
+  padding-left: 1rem;
+  max-width: 71.42857rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.menu {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.menu,
+.menu.horizontal {
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.menu.vertical {
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
+
+@media print, screen and (min-width: 40em) {
+  .menu.medium-horizontal {
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+}
+
+@media print, screen and (min-width: 40em) {
+  .container {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}
+
+@media print, screen and (min-width: 40em) {
+  h5,
+  .h5 {
+    font-size: 0.85rem !important;
+    color: inherit;
+    font-family: "Source Sans Pro", Helvetica, Roboto, Arial, sans-serif;
+    font-weight: bold !important;
+  }
+}
