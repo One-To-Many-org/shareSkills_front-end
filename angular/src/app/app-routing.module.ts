@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { RegistrationPageComponent } from './registration-page/registration-page.component';
 
 
 const routes: Routes = [
-  { path: 'loginpage', component: LoginPageComponent },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'registration', component: RegistrationPageComponent },
   { path: 'collaborations', loadChildren: () => import('./collaborations/collaborations.module').then(m => m.CollaborationsModule) },
-  { path: '', redirectTo: '/loginpage', pathMatch: 'full' }
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({

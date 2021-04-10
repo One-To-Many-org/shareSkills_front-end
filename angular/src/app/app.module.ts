@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginModule} from '@web-times-team/angular-web-times-tools';
+import { RegistrationPageComponent } from './registration-page/registration-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    FooterComponent
+    FooterComponent,
+    RegistrationPageComponent
   ],
   imports: [
     BrowserModule,
