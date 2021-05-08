@@ -7,7 +7,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginModule} from '@web-times-team/angular-web-times-tools';
 import { RegistrationPageComponent } from './registration-page/registration-page.component';
-
+import { SharingModule } from './sharing/sharing.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +18,8 @@ import { RegistrationPageComponent } from './registration-page/registration-page
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LoginModule
+    LoginModule,
+    SharingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
