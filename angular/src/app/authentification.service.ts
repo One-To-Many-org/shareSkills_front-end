@@ -1,10 +1,10 @@
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map, retry, tap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
 import { User } from './class/types';
-
+import { environment } from 'src/environments/environment';
+import { HttpErrorHandlerService , HandleError } from '@web-times-team/angular-web-times-tools';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -13,14 +13,19 @@ const httpOptions = {
   withCredentials: true
 };
 
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthentificationService {
+  private handleError: HandleError;
   isLoggedIn = false;
   // store the URL so we can redirect after logging in
   redirectUrl: string;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,  httpErrorHandler: HttpErrorHandlerService) {
+    this.handleError = httpErrorHandler.createHandleError('AuthentificationService');
+   }
 
   authentificationUrl = environment.apiUrl + 'login-page/login';
   isAuthUrl = environment.apiUrl + 'login-page/is-auth';
@@ -28,7 +33,7 @@ export class AuthentificationService {
   /**
    * login user
    */
-  login(credentials: any): Observable<HttpResponse<User>> {
+  login(credentials: any): Observable<boolean | HttpResponse<User>> {
     return this.http.post<User>(this.authentificationUrl, credentials, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -36,12 +41,10 @@ export class AuthentificationService {
       observe: 'response'
     })
       .pipe(
-        tap(val => {
+        tap(res => {
           this.isLoggedIn = true;
-        })
-
-        // adding catch error handlers
-        // );
+        }),
+        catchError(this.handleError('login', false))
       )
   }
   /**
@@ -52,7 +55,8 @@ export class AuthentificationService {
       map(res => {
         this.isLoggedIn = res.authenticated;
         return this.isLoggedIn;
-      })
+      }),
+      catchError(this.handleError('login', true))
     );
   }
   /**
@@ -63,7 +67,9 @@ export class AuthentificationService {
       map(res => {
         this.isLoggedIn = res.authenticated;
         return this.isLoggedIn;
-      })
+      }),
+      catchError(this.handleError('isAuth', false))
     );
   }
 }
+

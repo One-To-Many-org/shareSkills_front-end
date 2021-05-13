@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Route, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanLoad, Route, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthentificationService } from './authentification.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard implements CanActivate, CanLoad {
+
+
   constructor(private authentification: AuthentificationService, private router: Router) {
   }
   canActivate(
@@ -20,29 +22,29 @@ export class AuthGuard implements CanActivate {
     return this.checkLogin(url);
   }
 
-  checkLogin(url: string): boolean {
+  checkLogin(url: string): boolean  {
     if (this.authentification.isLoggedIn) {
       return true;
     }
     // Store the attempted URL for redirecting
     this.authentification.redirectUrl = url;
-    console.log(url);
     // Navigate to the login page
-    this.router.navigate([this.authentification.redirectUrl]);
+    this.router.navigate(['login']);
     return false;
   }
 
-  async activeLoginPage(url: string): Promise<boolean> {
+  async activeLoginPage(url: string): Promise<boolean | UrlTree> {
 
     try {
       const isAuth = await this.authentification.isAuth().toPromise();
       if (!isAuth) {
         return true;
       }
-      this.router.navigate(['/collaborations']);
-      return false;
+      this.authentification.redirectUrl = url;
+      return this.router.parseUrl('/collaborations');
     } catch (err) {
-      return false;
+      return true;
     }
   }
 }
+

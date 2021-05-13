@@ -5,20 +5,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { FooterComponent } from './footer/footer.component';
-import { LoginModule} from '@web-times-team/angular-web-times-tools';
+import { HttpServicesModule, LoginModule} from '@web-times-team/angular-web-times-tools';
 import { RegistrationPageComponent } from './registration-page/registration-page.component';
 import { SharingModule } from './sharing/sharing.module';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     FooterComponent,
-    RegistrationPageComponent
+    RegistrationPageComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LoginModule,
+    HttpServicesModule,
+    HttpClientModule,
     SharingModule
   ],
   providers: [],

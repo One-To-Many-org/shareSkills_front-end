@@ -30,10 +30,6 @@ export class LoginPageComponent implements OnInit {
       user => {
         this.router.navigate(['collaborations']);
       },
-      error => {
-        // handler error
-      }
-
     )
   }
 
