@@ -1,14 +1,22 @@
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
-export interface Authentification {
+export interface User {
+  id: string;
+  name: string;
   email: string;
-  password: string
+  password: string;
 }
 
-export interface State extends EntityState<Authentification> {
+export interface LoginState  {
+  pending: boolean;
+  error: string | null;
+}
+
+export interface AuthState extends EntityState<User> {
+  isAuthentificated: boolean;
+  accessToken: string | null;
 }
 
 
-export const adapter: EntityAdapter<Authentification> = createEntityAdapter<Authentification>({
 
-});
+export const userAdapter: EntityAdapter<User> = createEntityAdapter<User>({});
