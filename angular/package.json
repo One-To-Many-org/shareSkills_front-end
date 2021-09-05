@@ -7,7 +7,14 @@
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
-        "e2e": "ng e2e"
+        "e2e": "ng e2e",
+        "qa": "npm run csslint && npm run htmllint && npm run typescriptlint && npm run test",
+        "csslint": "stylelint \"src/**/*.scss\" --fix",
+        "csslint-full": "stylelint \"src/**/*.{css,scss}\" --fix",
+        "csslint-check": "stylelint \"src/**/*.{css,scss}\"",
+        "htmllint": "prettier --write \"src/!(help)/**/*.html\"",
+        "htmllint-full": "prettier --write \"src/**/*.html\"",
+        "htmllint-check": "prettier --check \"src/**/*.html\""
     },
     "private": true,
     "dependencies": {
