@@ -1,6 +1,6 @@
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
-import { User } from '../services/authentification.service';
+import { User } from '../models/user';
 import * as LoginActions from './login-page.actions';
 
 export interface AuthState extends EntityState<User> {

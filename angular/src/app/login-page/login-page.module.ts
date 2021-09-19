@@ -5,10 +5,13 @@ import { LoginPageRoutingModule } from './login-page-routing.module';
 import { StoreModule } from '@ngrx/store';
 import * as fromAuth from './store/auth.reducer';
 import * as fromLoginPage from './store/login-page.reducer';
+import { LoginPageEffects } from './store/login-page.effects';
+import { EffectsModule } from '@ngrx/effects';
 @NgModule({
   declarations: [LoginPageComponent],
   imports: [CommonModule,
     StoreModule.forFeature(fromLoginPage.LoginFeatureKey, { auth: fromAuth.reducer, loginPage: fromLoginPage.reducer }),
+    EffectsModule.forFeature([LoginPageEffects]),
     LoginPageRoutingModule],
 })
 export class LoginPageModule {}

@@ -26,14 +26,14 @@ export const logout = createAction(
 );
 
 export const logoutConfirmed = createAction(
-  '[Login Page] Login Success',
+  '[Login Page] Logout confirmed',
 );
 
 export const logoutCancelled = createAction(
-  '[Login Page] Login Failure',
+  '[Login Page] Login cancelled',
   props<{ error: HttpErrorResponse }>()
 );
 
 export const logoutComplete = createAction(
-  '[Login Page] sign-in with google'
+  '[Login Page] logout complete'
 );

@@ -4,18 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map, retry, tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
-
-export interface User {
-  id: string;
-  username: string;
-  lastname: string;
-  firstname: string;
-  dateOfBirth: string;
-  email: string;
-  country: string;
-  region: string;
-  city: string;
-}
+import { User } from '../models/user';
 
 const httpOptions = {
   headers: new HttpHeaders({

@@ -7,7 +7,7 @@ import { AuthentificationService } from '../services/authentification.service';
 import * as LoginPageActions from './login-page.actions';
 
 @Injectable()
-export class LoginEffects {
+export class LoginPageEffects {
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(LoginPageActions.login),
