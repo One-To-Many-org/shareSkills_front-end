@@ -39,13 +39,12 @@ export class AuthentificationService {
   /**
    * login user
    */
-  login(credentials: any): Observable<boolean | HttpResponse<User>> {
+  login(credentials: any): Observable<User> {
     return this.http
       .post<User>(this.authentificationUrl, credentials, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
-        }),
-        observe: 'response',
+        })
       })
       .pipe(
         tap((res) => {
@@ -56,11 +55,10 @@ export class AuthentificationService {
   /**
    * logout
    */
-  logout(): Observable<any> {
+  logout(): Observable<void> {
     return this.http.get<any>(this.logoutUrl, httpOptions).pipe(
-      map((res) => {
-        this.isLoggedIn = res.authenticated;
-        return this.isLoggedIn;
+      tap((res) => {
+       // this.isLoggedIn = res.authenticated;
       })
     );
   }
