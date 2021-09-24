@@ -35,3 +35,6 @@ const { selectIds, selectEntities, selectAll, selectTotal } =
   adapter.getSelectors();
 
 export const selectUsers = selectAll;
+export const selectUser = () => {
+if (selectUsers().length===1) return  selectUsers()[0]
+}
