@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HttpClientModule } from '@angular/common/http';
 import { LoginPageModule } from './login-page/login-page.module';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,6 +20,7 @@ import { StoreModule } from '@ngrx/store';
   ],
   imports: [
     StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     LoginPageModule,
     BrowserModule,
     AppRoutingModule,

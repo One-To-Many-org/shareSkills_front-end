@@ -35,6 +35,6 @@ const { selectIds, selectEntities, selectAll, selectTotal } =
   adapter.getSelectors();
 
 export const selectUsers = selectAll;
-export const selectUser = () => {
-if (selectUsers().length===1) return  selectUsers()[0]
+export const selectUser = (state: EntityState<User> ) => {
+if (selectUsers(state).length===1) return  selectUsers(state)[0]
 }
