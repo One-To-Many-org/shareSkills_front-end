@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path: 'collaborations',
     loadChildren: () => import('./collaborations/collaborations.module').then(m => m.CollaborationsModule),
-    canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: '',

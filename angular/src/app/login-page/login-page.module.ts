@@ -8,13 +8,22 @@ import * as fromLoginPage from './store/login-page.reducer';
 import { LoginPageEffects } from './store/login-page.effects';
 import { EffectsModule } from '@ngrx/effects';
 import { SharingModule } from '../sharing/sharing.module';
+import { AuthentificationService } from './services/authentification.service';
+import { AuthentificationMockService } from './services/authentification-mock.service';
 @NgModule({
   declarations: [LoginPageComponent],
-  imports: [CommonModule,
-    StoreModule.forFeature(fromLoginPage.LoginFeatureKey, { auth: fromAuth.reducer, loginPage: fromLoginPage.reducer }),
+  imports: [
+    CommonModule,
+    StoreModule.forFeature(fromLoginPage.LoginFeatureKey, {
+      auth: fromAuth.reducer,
+      loginPage: fromLoginPage.reducer,
+    }),
     EffectsModule.forFeature([LoginPageEffects]),
     LoginPageRoutingModule,
-    SharingModule
+    SharingModule,
+  ],
+  providers: [
+    { provide: AuthentificationService, useClass: AuthentificationMockService },
   ],
 })
 export class LoginPageModule {}

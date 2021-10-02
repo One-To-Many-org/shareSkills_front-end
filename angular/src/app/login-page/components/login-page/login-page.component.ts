@@ -18,6 +18,6 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {}
 
   public login(): void {
-    if (!this.loginForm.errors) this.store.dispatch(login(this.loginForm.value));
+    if (!this.loginForm.errors) this.store.dispatch(login({credentials:this.loginForm.value}));
   }
 }

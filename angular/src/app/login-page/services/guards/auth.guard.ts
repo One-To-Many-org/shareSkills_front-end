@@ -4,8 +4,6 @@ import {
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
   UrlTree,
-  CanLoad,
-  Route,
   Router,
 } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -54,6 +52,4 @@ export class AuthGuard implements CanActivate {
       catchError(() => of(false))
     );
   }
-
-
 }

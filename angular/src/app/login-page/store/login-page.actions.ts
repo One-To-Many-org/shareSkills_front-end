@@ -1,10 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
-import { User } from '../models/user';
+import { Credentials, User } from '../models/user';
 
 export const login = createAction(
   '[Login Page] Login',
-  props<{ credentials: { username: string; password: string } }>()
+  props<{ credentials: Credentials }>()
 );
 
 export const loginSuccess = createAction(
