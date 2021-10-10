@@ -23,7 +23,7 @@ const users = [
 ];
 @Injectable()
 export class AuthentificationMockService {
-  isLoggin: boolean;
+  public isLoggin: boolean=false;
   constructor(private http: HttpClient) {}
 
   login(credentials: Credentials): Observable<User> {

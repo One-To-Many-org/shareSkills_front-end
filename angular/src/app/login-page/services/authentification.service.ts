@@ -18,7 +18,7 @@ const httpOptions = {
 export class AuthentificationService {
   isLoggedIn = false;
   // store the URL so we can redirect after logging in
-  redirectUrl: string;
+  redirectUrl: string='';
   constructor(private http: HttpClient) {}
 
   authentificationUrl = environment.apiUrl + 'login-page/login';
@@ -34,11 +34,7 @@ export class AuthentificationService {
   }
 
   logout(): Observable<void> {
-    return this.http.get<any>(this.logoutUrl, httpOptions).pipe(
-      tap((res) => {
-        // this.isLoggedIn = res.authenticated;
-      })
-    );
+    return this.http.get<void>(this.logoutUrl, httpOptions)
   }
 
   isAuth(): Observable<any> {

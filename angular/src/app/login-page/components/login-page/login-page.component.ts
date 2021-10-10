@@ -1,7 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Store } from '@ngrx/store';
+import { Observable, of } from 'rxjs';
+import { combineLatestObject } from 'src/app/sharing/combineLatestObject';
+import { LoginPage } from '../../models/login-page.model';
 import { login } from '../../store/login-page.actions';
+import * as fromloginPage from '../../store/login-page.index'
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -9,15 +18,22 @@ import { login } from '../../store/login-page.actions';
 })
 export class LoginPageComponent implements OnInit {
   public loginPageImg = '../../../../assets/img/kid_one_to_Many.jpeg';
-  loginForm = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+  loginForm = this.fb.group({
+    username: ['', Validators.required],
+    password: ['', Validators.required],
   });
-  constructor(private store: Store) {}
+  vo$: Observable<{ error: string | null; pending: boolean; }> | null= null;
+  constructor(private store: Store, private fb: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.vo$ = combineLatestObject({
+      error: this.store.select(fromloginPage.selectError),
+      pending: this.store.select(fromloginPage.selectPending)
+    });
+  }
 
   public login(): void {
-    if (!this.loginForm.errors) this.store.dispatch(login({credentials:this.loginForm.value}));
+    if (!this.loginForm.errors)
+      this.store.dispatch(login({ credentials: this.loginForm.value }));
   }
 }

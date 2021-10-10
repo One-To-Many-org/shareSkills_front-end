@@ -10,7 +10,7 @@ import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { catchError, map, mergeMap, take } from 'rxjs/operators';
 import { AuthentificationService } from '../authentification.service';
-import * as fromAuthIndex from '../../store/auth.index';
+import * as fromLoginPage from '../../store/login-page.index';
 @Injectable({
   providedIn: 'root',
 })
@@ -43,7 +43,7 @@ export class AuthGuard implements CanActivate {
     );
   }
   checkStoreAuthentication() {
-    return this.store.select(fromAuthIndex.selectIsLoggedIn).pipe(take(1));
+    return this.store.select(fromLoginPage.selectIsLoggedIn).pipe(take(1));
   }
 
   checkApiAuthentication() {
