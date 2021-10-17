@@ -68,4 +68,5 @@ describe('Auth Guard', () => {
     const expected = cold('(a|)', { a: true });
     expect(guard.canActivate()).toBeObservable(expected);
   });
+
 });
