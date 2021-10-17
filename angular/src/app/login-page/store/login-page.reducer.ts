@@ -42,7 +42,10 @@ export function reducer(state: LoginPageState , action: Action) {
 
 export const selectPending = (state: LoginPageState) => state.pending;
 export const selectError = (state: LoginPageState) => state.error;
-export const getIsLoggedIn = (state: LoginPageState) => state.isLoggedIn;
+export const getIsLoggedIn = (state: LoginPageState) => {
+console.log('niveau state',state.isLoggedIn);
+  return state.isLoggedIn
+};
 export const getAccessToken = (state: LoginPageState) => state.accessToken;
 
 const { selectIds, selectEntities, selectAll, selectTotal } =

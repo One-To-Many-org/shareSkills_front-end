@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  FormControl,
-  FormGroup,
   Validators,
 } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { combineLatestObject } from 'src/app/sharing/combineLatestObject';
-import { LoginPage } from '../../models/login-page.model';
 import { login } from '../../store/login-page.actions';
 import * as fromloginPage from '../../store/login-page.index'
 @Component({

@@ -23,7 +23,7 @@ const users = [
 ];
 @Injectable()
 export class AuthentificationMockService {
-  public isLoggin: boolean=false;
+  public isLoggIn: boolean=false;
   constructor(private http: HttpClient) {}
 
   login(credentials: Credentials): Observable<User> {
@@ -34,7 +34,7 @@ export class AuthentificationMockService {
     );
     if (user) {
       const { password, ...userloged } = user;
-      this.isLoggin = true
+      this.isLoggIn = true
       return timer(3000).pipe(
        exhaustMap(()=> of(userloged))
       )
@@ -47,11 +47,11 @@ export class AuthentificationMockService {
   }
 
   logout(): Observable<void> {
-    this.isLoggin = false;
+    this.isLoggIn = false;
     return of(void 0);
   }
 
   isAuth(): Observable<boolean> {
-    return of(this.isLoggin);
+    return of(this.isLoggIn);
   }
 }

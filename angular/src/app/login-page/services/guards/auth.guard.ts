@@ -20,10 +20,7 @@ export class AuthGuard implements CanActivate {
     private router: Router,
     private store: Store
   ) {}
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ):
+  canActivate():
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>
     | boolean
@@ -32,11 +29,12 @@ export class AuthGuard implements CanActivate {
       mergeMap((storeAuth) => {
         // tslint:disable-next-line: curly
         if (storeAuth) return of(true);
-        return this.checkApiAuthentication();
+        return of(false);
       }),
       map((storeOrApiauth) => {
         if (!storeOrApiauth) {
           this.router.navigate(['login']);
+          return false;
         }
         return true;
       })
@@ -46,9 +44,10 @@ export class AuthGuard implements CanActivate {
     return this.store.select(fromLoginPage.selectIsLoggedIn).pipe(take(1));
   }
 
+  //todo: in real app use and test this function
   checkApiAuthentication() {
     return this.authService.isAuth().pipe(
-      map(user => !!user),
+      map((isLoggedIn) => isLoggedIn),
       catchError(() => of(false))
     );
   }
