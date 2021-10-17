@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './auth.guard';
-import { LoginPageComponent } from './login-page/login-page.component';
+import { AuthGuard } from './login-page/services/guards/auth.guard';
+import { LoginPageComponent } from './login-page/components/login-page/login-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { RegistrationPageComponent } from './registration-page/registration-page.component';
 
@@ -9,7 +9,6 @@ import { RegistrationPageComponent } from './registration-page/registration-page
 const routes: Routes = [
   {
     path: 'login', component: LoginPageComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'registration',
@@ -18,7 +17,7 @@ const routes: Routes = [
   {
     path: 'collaborations',
     loadChildren: () => import('./collaborations/collaborations.module').then(m => m.CollaborationsModule),
-    canLoad: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: '',
@@ -26,7 +25,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: '**', 
+    path: '**',
     component: PageNotFoundComponent
   }
 ];

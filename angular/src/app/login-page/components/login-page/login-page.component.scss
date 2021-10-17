@@ -1,0 +1,36 @@
+:host {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    height: 100vh;
+}
+
+.login-page_img {
+    height: 100%;
+}
+
+.login-page_create-account {
+    position: absolute;
+    top: 5em;
+    right: 2em;
+    align-self: flex-end;
+}
+
+.login-page_form {
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-page_create-account>a {
+    padding: 0 1em 0 1em;
+}
+
+.login-page_create-account>button {
+    padding: 0 1em 0 1em;
+}
+
+.login-page_form-data {
+    padding: 2em 2em;
+}
