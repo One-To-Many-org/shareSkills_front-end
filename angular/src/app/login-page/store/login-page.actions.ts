@@ -14,7 +14,6 @@ export const loginSuccess = createAction(
 
 export const loginFailure = createAction(
   '[Login Page] Login Failure',
-  props<{ error: HttpErrorResponse }>()
 );
 
 export const signInWithGoogle = createAction(

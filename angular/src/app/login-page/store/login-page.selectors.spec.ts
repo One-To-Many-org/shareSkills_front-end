@@ -3,7 +3,7 @@ import {
   selectIsLoggedIn,
   selectError,
   selectPending,
-} from './login-page.index';
+} from './login-page.selectors';
 
 describe('Selectors', () => {
   const initialState = {

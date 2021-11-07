@@ -34,7 +34,7 @@ describe('LoginPageComponent', () => {
         .then(() => {
            store = TestBed.inject(MockStore);
            fixture = TestBed.createComponent(LoginPageComponent);
-           component = fixture.componentInstance;
+           component = fixture.debugElement.componentInstance;
         });
     })
   );
@@ -42,7 +42,7 @@ describe('LoginPageComponent', () => {
   beforeEach(() => {
     store = TestBed.inject(MockStore);
     fixture = TestBed.createComponent(LoginPageComponent);
-    component = fixture.componentInstance;
+    component = fixture.debugElement.componentInstance;
     fixture.detectChanges();
   });
 

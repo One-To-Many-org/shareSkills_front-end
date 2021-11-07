@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { combineLatestObject } from 'src/app/sharing/combineLatestObject';
 import { login } from '../../store/login-page.actions';
-import * as fromloginPage from '../../store/login-page.index'
+import * as fromloginPage from '../../store/login-page.selectors'
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',

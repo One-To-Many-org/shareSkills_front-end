@@ -10,7 +10,7 @@ import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { catchError, map, mergeMap, take } from 'rxjs/operators';
 import { AuthentificationService } from '../authentification.service';
-import * as fromLoginPage from '../../store/login-page.index';
+import * as fromLoginPage from '../../store/login-page.selectors';
 @Injectable({
   providedIn: 'root',
 })

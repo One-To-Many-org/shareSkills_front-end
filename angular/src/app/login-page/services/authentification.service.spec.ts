@@ -27,7 +27,7 @@ describe('AuthentificationService', () => {
   };
   const credentials = {
     username: 'faizouaremou@gmail.com',
-    password: 'nosoup4u!',
+    password: 'jesaispas!',
   };
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -43,7 +43,7 @@ describe('AuthentificationService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('can test login', () => {
+  it('can test logout', () => {
     // Make an HTTP GET request
     httpClient.get<string>(testLogoutUrl).subscribe((data) =>
       // When observable resolves, result should match test data

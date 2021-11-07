@@ -6,7 +6,7 @@ import { AuthentificationService } from '../authentification.service';
 import { AuthGuard } from './auth.guard';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
-import * as fromLoginPage from '../../store/login-page.index';
+import * as fromLoginPage from '../../store/login-page.selectors';
 
 describe('Auth Guard', () => {
   let guard: AuthGuard;
