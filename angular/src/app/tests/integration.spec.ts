@@ -20,7 +20,7 @@ import { By } from '@angular/platform-browser';
 //   const testLoginUrl = environment.apiUrl + 'login-page/login';
 //   const testIsAuthUrl = environment.apiUrl + 'login-page/is-auth';
 
-//   beforeEach(() => {
+//   beforeEach(waitForAsync(() => {
 //     TestBed.configureTestingModule({
 //       declarations: [AppComponent, LoginPageComponent],
 //       imports: [
@@ -50,7 +50,7 @@ import { By } from '@angular/platform-browser';
 
 //     // fixture.detectChanges();
 
-//   });
+//   }));
 
 //   afterEach(() => {
 //     httpTestingController.verify();
