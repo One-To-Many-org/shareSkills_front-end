@@ -29,7 +29,7 @@ export class LoginPageEffects {
     () =>
       this.actions$.pipe(
         ofType(LoginPageActions.loginSuccess),
-        tap(() => this.router.navigate(['collaborations']))
+        tap((test) => this.router.navigate(['collaborations']))
       ),
     { dispatch: false }
   );

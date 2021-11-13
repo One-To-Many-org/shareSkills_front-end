@@ -1,18 +1,20 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { AuthentificationService } from '../authentification.service';
 import { AuthGuard } from './auth.guard';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { cold } from 'jasmine-marbles';
 import * as fromLoginPage from '../../store/login-page.selectors';
+import { Router } from '@angular/router';
 
 describe('Auth Guard', () => {
   let guard: AuthGuard;
   let httpClient: HttpClient;
   let store: MockStore;
   let mockIsLoggedInSelector: any;
+  let authServiceSpy: any;
+  let routerSpy: any;
   const initialState = {
     'login-page': {
       ids: [],
@@ -24,11 +26,15 @@ describe('Auth Guard', () => {
     },
   };
   beforeEach(() => {
+    authServiceSpy = jasmine.createSpyObj('AuthentificationService', ['login']);
+    routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule.withRoutes([])],
+      imports: [HttpClientTestingModule],
       providers: [
         AuthGuard,
-        AuthentificationService,
+        { provide: Router, useValue: routerSpy },
+        { provide: AuthentificationService, useValue: authServiceSpy },
         provideMockStore({ initialState }),
       ],
     });
@@ -68,5 +74,4 @@ describe('Auth Guard', () => {
     const expected = cold('(a|)', { a: true });
     expect(guard.canActivate()).toBeObservable(expected);
   });
-
 });

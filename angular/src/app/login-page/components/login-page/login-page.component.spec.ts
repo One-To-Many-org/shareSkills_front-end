@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+  import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { LoginPageComponent } from './login-page.component';
 import { cold } from 'jasmine-marbles';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginPageState } from '../../store/login-page.reducer';
 
 describe('LoginPageComponent', () => {
@@ -25,18 +25,23 @@ describe('LoginPageComponent', () => {
   };
 
   beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [LoginPageComponent],
-        providers: [provideMockStore({ initialState }), FormBuilder],
-      })
-        .compileComponents()
-        .then(() => {
-          store = TestBed.inject(MockStore);
-          fixture = TestBed.createComponent(LoginPageComponent);
-          component = fixture.debugElement.componentInstance;
-        });
-    })
+    async () => {
+
+     await TestBed.configureTestingModule({
+       imports: [ReactiveFormsModule],
+       declarations: [LoginPageComponent],
+       providers: [
+         provideMockStore({ initialState }),
+         FormBuilder,
+       ],
+     })
+       .compileComponents()
+       .then(() => {
+         store = TestBed.inject(MockStore);
+         fixture = TestBed.createComponent(LoginPageComponent);
+         component = fixture.debugElement.componentInstance;
+       });
+    }
   );
 
   beforeEach(() => {
@@ -76,35 +81,34 @@ describe('LoginPageComponent', () => {
     expect(loginFormUserElement.value).toEqual(userNameValueFormControl?.value);
   });
 
-  // it('check username value after entering some value and validation', () => {
-  //   const loginFormUserElement: HTMLInputElement =
-  //     fixture.debugElement.nativeElement
-  //       .querySelector('#loginForm')
-  //       .querySelectorAll('input')[0];
-  //   loginFormUserElement.value = 'sample@gmail.com';
-  //   loginFormUserElement.dispatchEvent(new Event('input'));
-  //   fixture.detectChanges();
-  //   fixture.whenStable().then(() => {
-  //     const userNameFormGroup = component.loginForm.get('username')
-  //     expect(loginFormUserElement.value).toEqual(userNameFormGroup?.value);
-  //   })
-  // });
+  it('check username value after entering some value and validation', () => {
+    const loginFormUserElement: HTMLInputElement =
+      fixture.debugElement.nativeElement
+        .querySelector('#loginForm')
+        .querySelectorAll('input')[0];
+    loginFormUserElement.value = 'sample@gmail.com';
+    loginFormUserElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    fixture.whenStable().then(() => {
+      const userNameFormGroup = component.loginForm.get('username')
+      expect(loginFormUserElement.value).toEqual(userNameFormGroup?.value);
+    })
+  });
 
-  // it('check login form is valid when validation are fulfilled', () => {
-  //   const HTMLInputElement = fixture.debugElement.nativeElement.querySelector('#loginForm').querySelectorAll('input')[0];
+  it('check login form is valid when validation are fulfilled', () => {
+    const loginFormUserElement: HTMLInputElement =
+      fixture.debugElement.nativeElement
+        .querySelector('#loginForm')
+        .querySelectorAll('input')[0];
 
-  //   const loginFormUserElement: HTMLInputElement = fixture.debugElement.nativeElement.querySelector('#loginForm').querySelectorAll('input')[1];
+    const loginFormPasswordElement: HTMLInputElement = fixture.debugElement.nativeElement.querySelector('#loginForm').querySelectorAll('input')[1];
 
-  //   loginFormUserElement.value = "saikumakorthivada@gmail.com";
-  //   loginFormUserElement.value = "1234567";
+    loginFormUserElement.value = "faizouaremou@gmail.com";
+    loginFormPasswordElement.value = 'jesaispas!';
 
-  //   loginFormUserElement.dispatchEvent(new Event('input'));
-  //   loginFormUserElement.dispatchEvent(new Event('input'));
-  //   const isLoginFormValid = component.loginForm.valid;
-  //   expect(isLoginFormValid).toBeTruthy();
-  // })
-
-  function createNewEvent(eventType: string) {
-    return new Event(eventType);
-  }
+    loginFormUserElement.dispatchEvent(new Event('input'));
+    loginFormPasswordElement.dispatchEvent(new Event('input'));
+    const isLoginFormValid = component.loginForm.valid;
+    expect(isLoginFormValid).toBeTruthy();
+  })
 });
