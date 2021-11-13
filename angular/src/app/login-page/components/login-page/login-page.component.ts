@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { combineLatestObject } from 'src/app/sharing/combineLatestObject';
 import { login } from '../../store/login-page.actions';
-import * as fromloginPage from '../../store/login-page.index'
+import * as fromloginPage from '../../store/login-page.selectors';
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
@@ -19,13 +16,13 @@ export class LoginPageComponent implements OnInit {
     username: ['', Validators.required],
     password: ['', Validators.required],
   });
-  vo$: Observable<{ error: string | null; pending: boolean; }> | null= null;
+  vo$: Observable<{ error: string | null; pending: boolean }> | null = null;
   constructor(private store: Store, private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.vo$ = combineLatestObject({
       error: this.store.select(fromloginPage.selectError),
-      pending: this.store.select(fromloginPage.selectPending)
+      pending: this.store.select(fromloginPage.selectPending),
     });
   }
 

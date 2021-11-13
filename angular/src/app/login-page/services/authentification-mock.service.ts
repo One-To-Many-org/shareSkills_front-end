@@ -11,14 +11,14 @@ const users = [
     firstName: 'Faizou',
     lastName: 'Aremou',
     email: 'faizouaremou@gmail.com',
-    password: 'nosoup4u!',
+    password: 'jesaispas!',
   },
   {
     id: '2',
     firstName: 'Malo',
     lastName: 'Kouchoanou',
     email: 'ptitKouche@yahoo.fr',
-    password: 'soup4me!',
+    password: 'jesaisbien!',
   },
 ];
 @Injectable()

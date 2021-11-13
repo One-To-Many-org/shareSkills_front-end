@@ -14,7 +14,7 @@ export class LoginPageEffects {
       exhaustMap((action) =>
         this.authService.login(action.credentials).pipe(
           map((user) => LoginPageActions.loginSuccess({ user })),
-          catchError((error) => of(LoginPageActions.loginFailure({ error })))
+          catchError((error) => of(LoginPageActions.loginFailure()))
         )
       )
     )
@@ -29,7 +29,7 @@ export class LoginPageEffects {
     () =>
       this.actions$.pipe(
         ofType(LoginPageActions.loginSuccess),
-        tap(() => this.router.navigate(['collaborations']))
+        tap((test) => this.router.navigate(['collaborations']))
       ),
     { dispatch: false }
   );

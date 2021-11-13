@@ -20,31 +20,30 @@ export const initialState: LoginPageState = adapter.getInitialState({
 });
 export const LoginFeatureKey = 'login-page';
 
-const loginReducer = createReducer(
+export const loginPageReducer = createReducer(
   initialState,
   on(LoginActions.login, (state) => {
     return { ...state, pending: true };
   }),
-  on(LoginActions.loginSuccess, (state, {user}) => {
-    return {...adapter.addOne(user, state), isLoggedIn: true, pending: false };
-  }),
-   on(LoginActions.logoutComplete, (state) => {
-    return { ...adapter.removeAll(state), isLoggedIn: false };
+  on(LoginActions.loginSuccess, (state, { user }) => {
+    return { ...adapter.addOne(user, state), isLoggedIn: true, pending: false };
   }),
   on(LoginActions.loginFailure, (state) => {
     return { ...state, pending: false, error: 'username or password is wrong' };
+  }),
+  on(LoginActions.logoutComplete, (state) => {
+    return { ...adapter.removeAll(state), isLoggedIn: false };
   })
 );
 
-export function reducer(state: LoginPageState , action: Action) {
-  return loginReducer(state, action);
+export function reducer(state: LoginPageState, action: Action) {
+  return loginPageReducer(state, action);
 }
 
 export const selectPending = (state: LoginPageState) => state.pending;
 export const selectError = (state: LoginPageState) => state.error;
 export const getIsLoggedIn = (state: LoginPageState) => {
-console.log('niveau state',state.isLoggedIn);
-  return state.isLoggedIn
+  return state.isLoggedIn;
 };
 export const getAccessToken = (state: LoginPageState) => state.accessToken;
 
@@ -52,6 +51,6 @@ const { selectIds, selectEntities, selectAll, selectTotal } =
   adapter.getSelectors();
 
 export const selectUsers = selectAll;
-export const selectUser = (state:LoginPageState) => {
+export const selectUser = (state: LoginPageState) => {
   if (selectUsers(state).length === 1) return selectUsers(state)[0];
 };
