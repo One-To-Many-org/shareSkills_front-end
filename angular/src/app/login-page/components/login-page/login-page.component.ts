@@ -16,14 +16,17 @@ export class LoginPageComponent implements OnInit {
     username: ['', Validators.required],
     password: ['', Validators.required],
   });
-  vo$: Observable<{ error: string | null; pending: boolean }> | null = null;
-  constructor(private store: Store, private fb: FormBuilder) {}
+
+  error$: Observable<string | null>;
+  pending$: Observable<boolean>;
+
+  constructor(private store: Store, private fb: FormBuilder) {
+    this.error$ = this.store.select(fromloginPage.selectError);
+    this.pending$ = this.store.select(fromloginPage.selectPending);
+  }
 
   ngOnInit(): void {
-    this.vo$ = combineLatestObject({
-      error: this.store.select(fromloginPage.selectError),
-      pending: this.store.select(fromloginPage.selectPending),
-    });
+
   }
 
   public login(): void {
